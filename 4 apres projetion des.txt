@@ -1,0 +1,8 @@
+4.
+apres projetion des objets de 3d en 2d 
+on a que des points on veut remplir les surface
+on le fait par triangles 3points
+pour chaque 3pts 
+on determine si notre pixel condidats appratient a 
+5.add depth
+6.lighting
