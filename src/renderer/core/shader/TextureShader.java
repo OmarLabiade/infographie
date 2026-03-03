@@ -83,13 +83,36 @@ public class TextureShader extends Shader {
         }
         // The Fragment may not have texture coordinates
         try {
+            // Récupérer les coordonnées de texture (u, v) stockées aux indices 7 et 8
+            double[] uv = fragment.getAttribute(START_TEXTURE_ATTRIBUTE, NUMBER_TEXTURE_ATTRIBUTE);
+            double u = uv[0];
+            double v = uv[1];
+
+            // Échantillonner la texture aux coordonnées (u, v)
+            Color texColor = texture.sample(u, v);
+
+            if (combineWithBaseColor) {
+                // Combiner la couleur de la texture avec la couleur de base du fragment
+                double r = Fragment.colorToFloat(texColor.getRed())   * fragment.getAttribute(Fragment.COLOR_R);
+                double g = Fragment.colorToFloat(texColor.getGreen()) * fragment.getAttribute(Fragment.COLOR_G);
+                double b = Fragment.colorToFloat(texColor.getBlue())  * fragment.getAttribute(Fragment.COLOR_B);
+
+                r = MathUtils.clamp(r, 0.0, 1.0);
+                g = MathUtils.clamp(g, 0.0, 1.0);
+                b = MathUtils.clamp(b, 0.0, 1.0);
+                screen.setPixel(fragment.getX(), fragment.getY(),
+                        new Color((int)(r * 255), (int)(g * 255), (int)(b * 255)));
+            } else {
+                // Utiliser uniquement la couleur de la texture
+                screen.setPixel(fragment.getX(), fragment.getY(), texColor);
+            }
 
         } catch (ArrayIndexOutOfBoundsException e) {
+            // Pas de coordonnées de texture : utiliser la couleur interpolée
             screen.setPixel(fragment.getX(), fragment.getY(), fragment.getColor());
         }
         depth.writeFragment(fragment);
     }
-
     /**
      * Reset the shader.
      */
