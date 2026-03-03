@@ -19,6 +19,6 @@ public class AmbientLight extends Light {
     @Override
     public double getContribution(Vector position, Vector normal, double[] color,
             Vector cameraPosition, double ka, double kd, double ks, double s) {
-        return intensity;
+        return intensity*ka;
     }
 }

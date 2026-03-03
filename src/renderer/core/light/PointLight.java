@@ -51,7 +51,6 @@ public class PointLight extends Light {
         // half-vector between e and l
         Vector h = e.add(l);
         h = h.normalize();
-
         // diffuse contribution
         double cosNL = Math.max(0.0, normal.dot(l));
         double I_diffuse = intensity * kd * cosNL;
