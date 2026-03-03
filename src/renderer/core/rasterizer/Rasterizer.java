@@ -280,8 +280,9 @@ public class Rasterizer {
                 double b = bc.get(1);
                 double c = bc.get(2);
 
+                double epsilon =1e-8;
                 // appartient au triangle si a,b,c>=0
-                if (a >= 0 && b >= 0 && c >= 0) {
+                if (a >= -epsilon && b >= -epsilon && c >= -epsilon) {
 
                     Fragment frag = new Fragment(x, y);
 
