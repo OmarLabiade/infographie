@@ -82,14 +82,9 @@ public class Transformation {
      */
     public void setProjection() {
 
-
         this.projection.setRow(0, new Vector(1, 0, 0, 0));
         this.projection.setRow(1, new Vector(0, 1, 0, 0));
         this.projection.setRow(2, new Vector(0, 0, 1, 0));
-
-
-
-
 
         System.out.println("Projection matrix:\n" + projection);
     }
@@ -101,17 +96,9 @@ public class Transformation {
      * @param height the height of the image
      */
     public void setCalibration(double focal, double width, double height) {
-
-        // TODO
         this.calibration.setRow(0, new Vector(focal, 0, width / 2));
         this.calibration.setRow(1, new Vector(0, focal, height / 2));
         this.calibration.setRow(2, new Vector(0, 0, 1));
-
-
-
-
-
-
         System.out.println("Calibration matrix:\n" + calibration);
     }
 
@@ -125,7 +112,6 @@ public class Transformation {
      * @throws SizeMismatchException if the size of the input vector is not 3
      */
     public Vector projectPoint(Vector p) throws SizeMismatchException {
-        // TODO
         Vector ps = new Vector(3);
 
         Vector phomogene = new Vector(p.get(0), p.get(1), p.get(2), 1);
