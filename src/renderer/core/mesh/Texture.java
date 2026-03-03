@@ -46,11 +46,18 @@ public class Texture {
      * @return the color of the texture at (u,v)
      */
     public Color sample(double u, double v) {
-        // TODO
+        u = u % 1.0;
+        v = v % 1.0;
 
+        if (u < 0) u += 1.0;
+        if (v < 0) v += 1.0;
 
+        int x = (int) (u * width);
+        int y = (int) (v * height);
 
+        x = Math.min(x, width - 1);
+        y = Math.min(y, height - 1);
 
-        return new Color (0,0,0);
+        return new Color(image.getRGB(x, y));
     }
 }

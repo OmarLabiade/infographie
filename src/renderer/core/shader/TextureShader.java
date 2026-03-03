@@ -83,27 +83,6 @@ public class TextureShader extends Shader {
         }
         // The Fragment may not have texture coordinates
         try {
-            // TODO
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         } catch (ArrayIndexOutOfBoundsException e) {
             screen.setPixel(fragment.getX(), fragment.getY(), fragment.getColor());
