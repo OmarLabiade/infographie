@@ -26,6 +26,7 @@ public class DepthBuffer {
      *
      * @param width  the width of the buffer
      * @param height the height of the buffer
+     * @param height the height of the buffer
      */
     public DepthBuffer(int width, int height) {
         buffer = new Matrix(height, width);
@@ -66,7 +67,7 @@ public class DepthBuffer {
      */
     public boolean testFragment(Fragment f) {
         if (isWithinBounds(f)) {
-            double previous_depth = buffer.get(f.getX(), f.getY());
+            double previous_depth = buffer.get(f.getY(), f.getX());
             double current_depth = f.getDepth();
             if (current_depth <= previous_depth) {
                 return true;
@@ -83,7 +84,7 @@ public class DepthBuffer {
      */
     public void writeFragment(Fragment f) {
         if (isWithinBounds(f)) {
-            buffer.set(f.getX(), f.getY(),f.getDepth());
+            buffer.set(f.getY(), f.getX(),f.getDepth());
         }
     }
 
